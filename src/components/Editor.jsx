@@ -138,7 +138,8 @@ export default function Editor({ onCreate }) {
       })
       if (!res.ok) throw new Error('Failed to create page')
       const data = await res.json()
-      const full = `${window.location.origin}${data.url}`
+      // Use backend base so the link works even without the React app
+      const full = `${BACKEND}${data.url}`
       onCreate(full)
     } catch (e) {
       alert('Could not create page. Please try again.')
